@@ -31,6 +31,11 @@ const ButtonUI = styled.button`
   margin: 0 1em;
   padding: 10px;
 
+  &:active,
+  &:focus {
+    outline: none;
+  }
+
   ${props => props.primary && css`
     background: ${state.primary};
     border-color: ${state.primary};
