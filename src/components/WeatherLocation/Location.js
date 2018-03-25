@@ -7,10 +7,10 @@ const stateToCountryName = country => {
          return 'Argentina'
       case 'CL':
          return 'Chile'
-      case 'UK':
+      case 'GB':
          return 'Reino Unido'
       default:
-         return 'País'
+         return country
    }
 }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Location from './Location'
 import convert from 'convert-units'
+import logo from '../../logo.svg'
 import WeatherData from './WeatherData'
 import {
    CLOUD,
@@ -11,7 +12,7 @@ import {
    WINDY
 } from '../../constants/weathers'
 
-const location = 'Buenos Aires,ar'
+const location = 'London,uk'
 const api_key = '01a56e0ee2eb0a460a195c66b6b31168'
 const api_weather = `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${api_key}`
 
@@ -20,12 +21,12 @@ class WeatherLocation extends Component {
       super()
 
       this.state = {
-         city: 'Ciudad',
-         country: 'País',
-         temperature: 27,
-         weatherState: SUN,
-         humidity: 10,
-         wind: '10m/s'
+         city: '',
+         country: '',
+         temperature: 0,
+         weatherState: '',
+         humidity: 0,
+         wind: '0m/s'
       }
    }
 
@@ -50,14 +51,20 @@ class WeatherLocation extends Component {
          })
    }
 
+   componentWillMount() {
+      this.handleUpdateClick()
+   }
+
    render() {
       const data = this.state
 
       return(
          <div className={`WeatherLocation WeatherLocation-${data.weatherState}`}>
             <Location city={data.city} country={data.country} />
-            <WeatherData data={data} />
-            <button onClick={this.handleUpdateClick}>Update</button>
+            {data.country === '' 
+               ? <img className='WeatherLocation__loader' src={logo} /> 
+               : <WeatherData data={data} />
+            }
          </div>
       )
    }

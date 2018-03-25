@@ -11,10 +11,20 @@ body {
   width: 310px;
   height: 400px;
   background: #116BB7;
+  position: relative;
   border-radius: 5px;
   padding: 2em;
   color: white;
   background: #1e5799;
+}
+
+@keyframes loader {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.WeatherLocation__loader {
+  animation: loader infinite 5s linear;
 }
 
 .WeatherLocation-sun { background: linear-gradient(to bottom, #1e5799 0%,#2989d8 50%,#57a7e5 100%); }
