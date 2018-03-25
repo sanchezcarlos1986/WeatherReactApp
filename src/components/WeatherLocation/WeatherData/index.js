@@ -7,7 +7,7 @@ const WeatherData = ({ data }) => {
    const { temperature, weatherState, humidity, wind } = data
 
    return(
-      <div>
+      <div className='WeatherData'>
          <WeatherTemperature temperature={temperature} weatherState={weatherState} />
          <WeatherExtraInfo humidity={humidity} wind={wind} />
       </div>

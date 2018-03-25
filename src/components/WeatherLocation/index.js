@@ -35,7 +35,7 @@ class WeatherLocation extends Component {
    render() {
       const data = this.state
       return(
-         <div>
+         <div className='WeatherLocation'>
             <Location city={data.city} />
             <WeatherData data={data} />
             <button onClick={this.handleUpdateClick}>Update</button>
