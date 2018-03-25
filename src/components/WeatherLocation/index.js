@@ -25,8 +25,8 @@ class WeatherLocation extends Component {
 
    handleUpdateClick = () => {
       this.setState({
-         temperature: 10,
-         weatherState: WINDY,
+         temperature: 7,
+         weatherState: RAIN,
          humidity: 60,
          wind: '50m/s'
       })
@@ -35,7 +35,7 @@ class WeatherLocation extends Component {
    render() {
       const data = this.state
       return(
-         <div className='WeatherLocation'>
+         <div className={`WeatherLocation WeatherLocation-${data.weatherState}`}>
             <Location city={data.city} />
             <WeatherData data={data} />
             <button onClick={this.handleUpdateClick}>Update</button>
