@@ -10,6 +10,10 @@ import {
    WINDY
 } from '../../constants/weathers'
 
+const location = 'Buenos Aires,ar'
+const api_key = '01a56e0ee2eb0a460a195c66b6b31168'
+const api_weather = `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${api_key}`
+
 class WeatherLocation extends Component {
    constructor() {
       super()
@@ -24,12 +28,16 @@ class WeatherLocation extends Component {
    }
 
    handleUpdateClick = () => {
-      this.setState({
-         temperature: 7,
-         weatherState: RAIN,
-         humidity: 60,
-         wind: '50m/s'
-      })
+      fetch(api_weather)
+         .then(response => {
+            return response.json()
+         })
+         .then(data => {
+            console.log(data)
+         })
+         .catch(err => {
+            console.error(`Hubo un error al hacer el fetch: ${err}`)
+         })
    }
 
    render() {
