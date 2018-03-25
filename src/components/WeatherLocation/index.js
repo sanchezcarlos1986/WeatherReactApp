@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Location from './Location'
+import convert from 'convert-units'
 import WeatherData from './WeatherData'
 import {
    CLOUD,
@@ -19,7 +20,8 @@ class WeatherLocation extends Component {
       super()
 
       this.state = {
-         city: 'Buenos Aires',
+         city: 'Ciudad',
+         country: 'País',
          temperature: 27,
          weatherState: SUN,
          humidity: 10,
@@ -34,6 +36,14 @@ class WeatherLocation extends Component {
          })
          .then(data => {
             console.log(data)
+            this.setState({
+               city: data.name,
+               country: data.sys.country,
+               temperature: Number(convert(data.main.temp).from('K').to('C').toFixed()),
+               weatherState: SUN,
+               humidity: data.main.humidity,
+               wind: `${data.wind.speed}m/s`
+            })
          })
          .catch(err => {
             console.error(`Hubo un error al hacer el fetch: ${err}`)
@@ -42,9 +52,10 @@ class WeatherLocation extends Component {
 
    render() {
       const data = this.state
+
       return(
          <div className={`WeatherLocation WeatherLocation-${data.weatherState}`}>
-            <Location city={data.city} />
+            <Location city={data.city} country={data.country} />
             <WeatherData data={data} />
             <button onClick={this.handleUpdateClick}>Update</button>
          </div>

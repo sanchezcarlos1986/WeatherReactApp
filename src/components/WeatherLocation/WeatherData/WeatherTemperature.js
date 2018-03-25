@@ -33,8 +33,6 @@ const getWeatherIcon = weatherState => (
       <WeatherIcons className='WeatherTemperature__icon' name={stateToIconName(weatherState)} size='2x' />
 )
 
-
-
 const WeatherTemperature = ({ temperature, weatherState }) => (
       <div className='WeatherTemperature'>
       { getWeatherIcon(weatherState) }

@@ -8,7 +8,7 @@ body {
 .WeatherLocation {
   box-shadow: 0 0 20px rgba(0,0,0,.5);
   width: 200px;
-  width: 330px;
+  width: 310px;
   height: 400px;
   background: #116BB7;
   border-radius: 5px;
@@ -24,6 +24,10 @@ body {
   font-weight: 100;
   margin-top: 0;
   text-align: right;
+}
+
+.Location__country {
+  font-size: .55em;
 }
 
 .WeatherTemperature {
