@@ -1,21 +1,20 @@
 body {
   background: url('./assets/background.jpg') no-repeat;
+  color: white;
   font-family: 'Open Sans', sans-serif;
   margin: 0;
   padding: 1em;
 }
 
 .WeatherLocation {
-  box-shadow: 0 0 20px rgba(0,0,0,.5);
-  width: 200px;
-  width: 310px;
-  height: 400px;
-  background: #116BB7;
-  position: relative;
-  border-radius: 5px;
-  padding: 2em;
-  color: white;
   background: #1e5799;
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(0,0,0,.5);
+  color: white;
+  margin-bottom: 15px;
+  padding: 2em;
+  position: relative;
+  width: 310px;
 }
 
 @keyframes loader {
@@ -52,7 +51,7 @@ body {
 }
 
 .WeatherTemperature__temperature {
-  font-size: 1.5em;
+  font-size: 1.3em;
   font-weight: 700;
 }
 
