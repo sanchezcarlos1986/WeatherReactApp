@@ -1,17 +1,40 @@
-import React from 'react'
+import React, { Component } from 'react'
 import WeatherLocation from './WeatherLocation/'
 
-const cities = ['Santiago,cl', 'Buenos Aires,ar', 'London,uk']
+class LocationList extends Component {
+  constructor() {
+    super()
 
-const LocationList = () => (
-  <div>
-    <h1>LocationList</h1>
-    {
-      cities.map((city, index) => (
-        <WeatherLocation key={index} city={city} />
-      ))
+    this.state = {
+      cities: []
     }
-  </div>
-)
+  }
+  componentWillMount() {
+    const cities = ['Buenos Aires,ar', 'London,uk']
+
+    fetch('https://geoip-db.com/json/')
+      .then(response => response.json())
+      .then(data => {
+        let currentLocation = `${data.city},${data.country_code.toLowerCase()}`
+        cities.unshift(currentLocation)
+        this.setState({ cities })
+    })
+  }
+
+  render(){
+    const { cities } = this.state
+
+    return(
+      <div>
+        <h1>LocationList</h1>
+        {
+          cities.map((city, index) => (
+            <WeatherLocation key={index} city={city} />
+          ))
+        }
+      </div>
+    )
+  }
+}
 
 export default LocationList
