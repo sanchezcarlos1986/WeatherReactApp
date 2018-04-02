@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import WeatherLocation from './WeatherLocation/'
 
 class LocationList extends Component {
@@ -21,19 +22,28 @@ class LocationList extends Component {
     })
   }
 
+  handleWeatherLocationClick = city => {
+    const { onSelectedLocation } = this.props 
+    onSelectedLocation(city)
+  }
+
   render(){
     const { cities } = this.state
 
     return(
       <div className='LocationList'>
         {
-          cities.map((city, index) => (
-            <WeatherLocation key={index} city={city} />
+          cities.map(city => (
+            <WeatherLocation key={city} city={city} onWeatherLocationClick={() => this.handleWeatherLocationClick(city)} />
           ))
         }
       </div>
     )
   }
+}
+
+LocationList.propTypes = {
+  onSelectedLocation: PropTypes.func
 }
 
 export default LocationList

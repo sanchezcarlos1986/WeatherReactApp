@@ -43,10 +43,11 @@ class WeatherLocation extends Component {
    }
 
    render() {
-		const data = this.state
+    const data = this.state
+    const { onWeatherLocationClick } = this.props
 
       return(
-			<div className={`WeatherLocation WeatherLocation-${data.weatherState}`}>
+			<div className={`WeatherLocation WeatherLocation-${data.weatherState}`} onClick={onWeatherLocationClick}>
 				<Location city={data.city} country={data.country} />
 				{data.country === '' 
 					? <img className='WeatherLocation__loader' src={logo} alt='WeatherLocation__loader' /> 
@@ -58,7 +59,8 @@ class WeatherLocation extends Component {
 }
 
 WeatherLocation.propTypes = {
-	city: PropTypes.string
+  city: PropTypes.string,
+  onWeatherLocationClick: PropTypes.func
 }
 
 export default WeatherLocation
