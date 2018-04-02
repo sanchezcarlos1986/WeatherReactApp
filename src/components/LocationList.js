@@ -25,8 +25,7 @@ class LocationList extends Component {
     const { cities } = this.state
 
     return(
-      <div>
-        <h1>LocationList</h1>
+      <div className='LocationList'>
         {
           cities.map((city, index) => (
             <WeatherLocation key={index} city={city} />

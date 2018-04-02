@@ -4,14 +4,6 @@ import convert from 'convert-units'
 import PropTypes from 'prop-types'
 import logo from '../../logo.svg'
 import WeatherData from './WeatherData'
-import {
-   CLOUD,
-   CLOUDY,
-   SUN,
-   RAIN,
-   SNOW,
-   WINDY
-} from '../../constants/weathers'
 
 const api_key = '01a56e0ee2eb0a460a195c66b6b31168'
 const url = 'http://api.openweathermap.org/data/2.5/weather'
@@ -21,12 +13,12 @@ class WeatherLocation extends Component {
 		super()	
 		
       this.state = {
-			city,
-         country: '',
-         temperature: 0,
-         weatherState: '',
-         humidity: 0,
-         wind: '0m/s'
+        city,
+        country: '',
+        temperature: 0,
+        weatherState: '',
+        humidity: 0,
+        wind: '0m/s'
       }
    }
 
@@ -40,7 +32,7 @@ class WeatherLocation extends Component {
             this.setState({
                country: data.sys.country,
                temperature: Number(convert(data.main.temp).from('K').to('C').toFixed()),
-               weatherState: SUN,
+               weatherState: data.weather[0].id,
                humidity: data.main.humidity,
                wind: `${data.wind.speed}m/s`
             })
@@ -57,7 +49,7 @@ class WeatherLocation extends Component {
 			<div className={`WeatherLocation WeatherLocation-${data.weatherState}`}>
 				<Location city={data.city} country={data.country} />
 				{data.country === '' 
-					? <img className='WeatherLocation__loader' src={logo} /> 
+					? <img className='WeatherLocation__loader' src={logo} alt='WeatherLocation__loader' /> 
 					: <WeatherData data={data} />
 				}
 			</div>

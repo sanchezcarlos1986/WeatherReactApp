@@ -17,7 +17,7 @@ const WeatherData = ({ data }) => {
 WeatherData.propTypes = {
    data: PropTypes.shape({
       temperature: PropTypes.number.isRequired,
-      weatherState: PropTypes.string.isRequired,
+      weatherState: PropTypes.number.isRequired,
       humidity: PropTypes.number.isRequired,
       wind: PropTypes.string.isRequired
    })

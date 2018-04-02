@@ -1,32 +1,31 @@
 import React from 'react'
 import WeatherIcons from 'react-weathericons'
 import {
-   CLOUD,
    CLOUDY,
    SUN,
    RAIN,
    SNOW,
-   WINDY
+   THUNDER,
+   DRIZZLE
    } from '../../../constants/weathers'
 import PropTypes from 'prop-types'
 
 const stateToIconName = weatherState => {
-   switch (weatherState) {
-      case CLOUD:
-         return 'cloud'
-      case CLOUDY:
-         return 'cloudy'
-      case SUN:
-         return 'day-sunny'
-      case RAIN:
-         return 'rain'
-      case SNOW:
-         return 'snow'
-      case WINDY:
-         return 'windy'
-      default:
-         return 'day-sunny'
-   }
+	if (weatherState < 300) {
+		return THUNDER
+	} else if(weatherState < 400) {
+		return DRIZZLE
+	} else if(weatherState < 600) {
+		return RAIN
+	} else if(weatherState < 700) {
+		return SNOW
+	} else if(weatherState === 800) {
+		return SUN
+	} else if(weatherState < 800) {
+		return CLOUDY
+	} else {
+            return SUN
+      }
 }
 
 const getWeatherIcon = weatherState => (
@@ -42,7 +41,7 @@ const WeatherTemperature = ({ temperature, weatherState }) => (
 
 WeatherTemperature.propTypes = {
    temperature: PropTypes.number.isRequired,
-   weatherState: PropTypes.string.isRequired
+   weatherState: PropTypes.number.isRequired
 }
 
 export default WeatherTemperature
