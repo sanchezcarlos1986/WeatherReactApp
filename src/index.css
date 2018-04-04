@@ -11,11 +11,14 @@ body {
   border-radius: 5px;
   box-shadow: 0 0 20px rgba(0,0,0,.5);
   color: white;
-  margin-bottom: 15px;
-  padding: 2em;
+  margin: 0 10px 15px;
+  padding: 1em;
   position: relative;
   width: 310px;
 }
+
+.WeatherLocation:first-child { margin-left: 0; }
+.WeatherLocation:last-child { margin-right: 0; }
 
 @keyframes loader {
   from { transform: rotate(0deg); }
@@ -31,6 +34,7 @@ body {
 
 .Location h1 {
   font-weight: 100;
+  margin-bottom: 10px;
   margin-top: 0;
   text-align: right;
 }
@@ -41,7 +45,7 @@ body {
 
 .WeatherTemperature {
   display: flex;
-  font-size: 3.2em;
+  font-size: 2.5em;
   justify-content: space-between;
   letter-spacing:  -3px;
 }
@@ -51,7 +55,7 @@ body {
 }
 
 .WeatherTemperature__temperature {
-  font-size: 1.3em;
+  font-size: 1.15em;
   font-weight: 700;
 }
 
@@ -63,4 +67,10 @@ body {
 .LocationList {
   display: flex;
   justify-content: space-between;
+}
+
+.detail {
+  background: rgba(0,0,0,.3);
+  border-radius: 5px;
+  padding: 1em;
 }

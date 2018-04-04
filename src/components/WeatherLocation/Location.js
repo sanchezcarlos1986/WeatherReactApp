@@ -9,6 +9,10 @@ const stateToCountryName = country => {
          return 'Chile'
       case 'GB':
          return 'Reino Unido'
+      case 'ES':
+         return 'España'
+      case 'CO':
+         return 'Colombia'
       default:
          return country
    }
@@ -20,7 +24,7 @@ const getCountryName = country => (
 
 const Location = ({city, country}) => (
    <div className='Location'>
-      <h1>{city} {getCountryName(country)}</h1>
+      <h1>{city.split(',')[0]} {getCountryName(country)}</h1>
       
    </div>
 )

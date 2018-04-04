@@ -11,7 +11,7 @@ class LocationList extends Component {
     }
   }
   componentWillMount() {
-    const cities = ['Buenos Aires,ar', 'London,uk']
+    const cities = ['Buenos Aires,ar', 'London,uk', 'Madrid,es', 'Bogota,co']
 
     fetch('https://geoip-db.com/json/')
       .then(response => response.json())
