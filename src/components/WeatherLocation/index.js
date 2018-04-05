@@ -4,6 +4,7 @@ import convert from 'convert-units'
 import PropTypes from 'prop-types'
 import logo from '../../logo.svg'
 import WeatherData from './WeatherData'
+import transformWeather from '../../services/transformWeather'
 
 const api_key = '01a56e0ee2eb0a460a195c66b6b31168'
 const url = 'http://api.openweathermap.org/data/2.5/weather'
@@ -15,10 +16,12 @@ class WeatherLocation extends Component {
       this.state = {
         city,
         country: '',
-        temperature: 0,
-        weatherState: '',
-        humidity: 0,
-        wind: '0m/s'
+        data: {
+          temperature: 0,
+          weatherState: '',
+          humidity: 0,
+          wind: '0m/s'
+        }
       }
    }
 
@@ -31,10 +34,7 @@ class WeatherLocation extends Component {
          .then(data => {
             this.setState({
                country: data.sys.country,
-               temperature: Number(convert(data.main.temp).from('K').to('C').toFixed()),
-               weatherState: data.weather[0].id,
-               humidity: data.main.humidity,
-               wind: `${data.wind.speed}m/s`
+               data: transformWeather(data)
             })
          })
          .catch(err => {
@@ -43,13 +43,13 @@ class WeatherLocation extends Component {
    }
 
    render() {
-    const data = this.state
+    const { city, country, data } = this.state
     const { onWeatherLocationClick } = this.props
 
       return(
 			<div className={`WeatherLocation WeatherLocation-${data.weatherState}`} onClick={onWeatherLocationClick}>
-				<Location city={data.city} country={data.country} />
-				{data.country === '' 
+				<Location city={city} country={country} />
+				{country === '' 
 					? <img className='WeatherLocation__loader' src={logo} alt='WeatherLocation__loader' /> 
 					: <WeatherData data={data} />
 				}
