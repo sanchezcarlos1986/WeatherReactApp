@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ForecastItem from './ForecastItem'
 import PropTypes from 'prop-types'
+import logo from '../logo.svg'
 import transformForecast from '../services/transformForecast'
 
 const api_key = '01a56e0ee2eb0a460a195c66b6b31168'
@@ -46,7 +47,7 @@ class ForecastExtended extends Component {
 	}
 
   renderProgress = () => {
-    return 'render pronóstico extendido...'
+    return <img className='WeatherLocation__loader' src={logo} alt='WeatherLocation__loader' />
   }
 
   render() {
