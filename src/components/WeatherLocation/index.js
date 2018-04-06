@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Location from './Location'
-import convert from 'convert-units'
 import PropTypes from 'prop-types'
 import logo from '../../logo.svg'
 import WeatherData from './WeatherData'
@@ -11,8 +10,8 @@ const url = 'http://api.openweathermap.org/data/2.5/weather'
 
 class WeatherLocation extends Component {
    constructor({city}) {
-		super()	
-		
+		super()
+
       this.state = {
         city,
         country: '',
@@ -49,8 +48,8 @@ class WeatherLocation extends Component {
       return(
 			<div className={`WeatherLocation WeatherLocation-${data.weatherState}`} onClick={onWeatherLocationClick}>
 				<Location city={city} country={country} />
-				{country === '' 
-					? <img className='WeatherLocation__loader' src={logo} alt='WeatherLocation__loader' /> 
+				{country === ''
+					? <img className='WeatherLocation__loader' src={logo} alt='WeatherLocation__loader' />
 					: <WeatherData data={data} />
 				}
 			</div>

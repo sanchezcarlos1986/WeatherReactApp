@@ -10,29 +10,40 @@ class ForecastExtended extends Component {
   constructor() {
     super()
     this.state = { forecastData: null }
-  }
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if(nextProps.city !== this.props.city) {
+			this.setState({ forecastData: null })
+			this.updateCity(nextProps.city)
+		}
+	}
 
   componentDidMount() {
 		const { city } = this.props
-    const api_weather = `${url}?q=${city}&appid=${api_key}`
+		this.updateCity(city)
+	}
 
-    fetch(api_weather)
-      .then(response => response.json())
-      .then(data => {
-        const forecastData = transformForecast(data)
-        console.log('forecastData', forecastData)
-        this.setState({ forecastData })
-      })
-      .catch(err => {
-        console.error(`Hubo un error al hacer el fetch: ${err}`)
-      })
-  }
-  
+	updateCity = city => {
+		const api_weather = `${url}?q=${city}&appid=${api_key}`
 
-  renderForecastItemDays = () => {
-    return 'render items!'
-    // return days.map(day => <ForecastItem key={day} weekDay={day} hour={10} data={data} />)
-  }
+		fetch(api_weather)
+			.then(response => response.json())
+			.then(data => {
+				const forecastData = transformForecast(data)
+				this.setState({ forecastData })
+			})
+			.catch(err => {
+				console.error(`Hubo un error al hacer el fetch: ${err}`)
+			})
+	}
+
+
+	renderForecastItemDays = forecastData => {
+		return forecastData.map((forecast, index) =>
+			<ForecastItem key={`${forecast.weekDay}${forecast.hour}`} weekDay={forecast.weekDay} hour={forecast.hour} data={forecast.data} />
+		)
+	}
 
   renderProgress = () => {
     return 'render pronóstico extendido...'
@@ -45,8 +56,8 @@ class ForecastExtended extends Component {
       <div className="ForecastExtended">
         <h4>{`ForecastExtended: ${city}`}</h4>
         {
-          forecastData ? 
-            this.renderForecastItemDays() :
+          forecastData ?
+            this.renderForecastItemDays(forecastData) :
             this.renderProgress()
         }
       </div>
