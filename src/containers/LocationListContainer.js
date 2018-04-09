@@ -25,7 +25,7 @@ const mapStateToProps = null
 
 // mapDispatchToProps retorna un objeto que despacha una acción, en este caso se despacha la acción "SET_CITY" a través del action creator "setCity"
 const mapDispatchToProps = dispatch => ({
-	setCity: value => dispatch(setCity(value))
+	setCity: payload => dispatch(setCity(payload))
 })
 
 // Conectamos App a la store para que pueda recibir el estado y las acciones como props y lo exportamos. Este tipo de componentes se conocen como "Container"
