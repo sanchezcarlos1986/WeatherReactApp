@@ -11,7 +11,7 @@ class LocationList extends Component {
     }
   }
   componentWillMount() {
-    const cities = ['Buenos Aires,ar', 'London,uk', 'Madrid,es', 'Bogota,co']
+    const { cities } = this.props
 
     fetch('https://geoip-db.com/json/')
       .then(response => response.json())
@@ -23,7 +23,7 @@ class LocationList extends Component {
   }
 
   handleWeatherLocationClick = city => {
-    const { onSelectedLocation } = this.props 
+    const { onSelectedLocation } = this.props
     onSelectedLocation(city)
   }
 
